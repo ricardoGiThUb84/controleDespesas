@@ -134,11 +134,17 @@ function cadastrarDespesa() {
 }
 
 
-function carregaListaDespesas() {
-	let despesas;
+function carregaListaDespesas(despesas = [], filtro = false) {
+	
+	if(!despesas.length && !filtro){
 
-	despesas = bd.recuperarTodosRegistros();
+		despesas = bd.recuperarTodosRegistros();
+
+	}
+
+	 
 	linhaTr = document.getElementById('listaDespesasTbody');
+	linhaTr.innerHTML = "";
 
 	despesas.forEach(dado => {
 		// criando linhas ou tags <tr>
@@ -180,5 +186,7 @@ function pesquisarDespesa() {
 
 	let despesa = new Despesa(ano, mes, dia, tipo, descricao, valor);
 
-	bd.pesquisar(despesa);
+	let despesas = bd.pesquisar(despesa);
+
+	carregaListaDespesas(despesas , true);
 }
