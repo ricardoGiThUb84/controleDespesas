@@ -64,36 +64,18 @@ class Bd {
 
 		let despesasFiltradas = this.recuperarTodosRegistros();
 
-		if(!!despesa.ano){
-			
-			despesasFiltradas = despesasFiltradas.filter( f => f.ano === despesa.ano);
-			
-			
-		} 
-		if(!!despesa.mes){
-			
-			despesasFiltradas = despesasFiltradas.filter( f => f.mes === despesa.mes);
-			
-		} 
-		if(!!despesa.dia){
-			
-			despesasFiltradas = despesasFiltradas.filter( f => f.dia === despesa.dia);
-		} 
-		if(!!despesa.tipo){
-			
-			despesasFiltradas = despesasFiltradas.filter( f => f.tipo === despesa.tipo);
-		}
-		if(!!despesa.descricao){
-			
-			despesasFiltradas = despesasFiltradas.filter( f => f.descricao === despesa.descricao);
-		} 
-		if(!!despesa.valor){
-	
-			despesasFiltradas = despesasFiltradas.filter( f => f.valor === despesa.valor);
-		} 
+		for(let i in despesa){
 
-		console.log(despesasFiltradas) ;
-		//return despesasFiltradas;
+			if(!!despesa[i]){
+				
+				despesasFiltradas = despesasFiltradas.filter( f => f[i] === despesa[i]);
+				
+			} 
+
+		}
+		
+		
+		return despesasFiltradas;
 	}
 }
 
