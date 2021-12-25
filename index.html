@@ -1,0 +1,187 @@
+<html>
+	<head>
+    <meta charset="utf-8" />
+		<title>Orçamento pessoal</title>
+
+		<!-- Bootstrap início -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- Bootstrap fim -->
+    <link rel="stylesheet" href="estilo.css">
+
+    <!-- Font Awesome -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+    <script src="app.js"></script>
+
+	</head>
+
+  <body>
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5 fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+           <img src="logo.png" width="50"  alt="Orçamento pessoal"><span style="font-weight: lighter; color:rgb(241, 241, 241)">Controle</span><span style="font-weight: bold; color:rgb(0, 224, 19)">Despesas</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto ">
+            <li class="nav-item active">
+              <a class="nav-link" href="index.html">Cadastro</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="consulta.html">Consulta</a>
+            </li>
+          </ul>
+          
+        </div>
+      </div>
+    </nav>
+
+    
+
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col mb-5 mt-5">
+          <h1 class="display-4">Insira uma despesa</h1>
+        </div>
+      </div>
+
+      <div class="row mb-2">
+        <div class="col-md-2">
+          <select class="form-control" id="ano">
+            <option value="">Ano</option>
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+          </select>
+        </div>
+
+        <div class="col-md-2">
+          <select class="form-control" id="mes">
+            <option value="">Mês</option>
+            <option value="1">Janeiro</option>
+            <option value="2">Fevereiro</option>
+            <option value="3">Março</option>
+            <option value="4">Abril</option>
+            <option value="5">Maio</option>
+            <option value="6">Junho</option>
+            <option value="7">Julho</option>
+            <option value="8">Agosto</option>
+            <option value="9">Setembro</option>
+            <option value="10">Outubro</option>
+            <option value="11">Novembro</option>
+            <option value="12">Dezembro</option>
+          </select>
+        </div>
+        
+        <div class="col-md-2">
+          <input type="text" class="form-control" placeholder="Dia" id="dia" />
+        </div>
+
+        <div class="col-md-6">
+          <select class="form-control" id="tipo">
+            <option value="">Tipo</option>
+            <option value="1">Alimentação</option>
+            <option value="2">Educação</option>
+            <option value="3">Lazer</option>
+            <option value="4">Saúde</option>
+            <option value="5">Transporte</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-8">
+          <input type="text" class="form-control" placeholder="Descrição" id="descricao" />
+        </div>
+
+        <div class="col-md-2">
+          <input type="text" class="form-control" placeholder="Valor" id="valor" />
+        </div>
+
+        <div class="col-md-2 d-flex justify-content-end">
+          <button type="button" class="btn btn-primary" onclick="cadastrarDespesa()">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalRegistraDespesa" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div id="modal_titulo_div">
+            <h5 class="modal-title" id="modal_titulo"></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="modal_conteudo"></div>
+          <div class="modal-footer">
+            <button type="button" data-dismiss="modal" id="modal_btn">Voltar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid bg-light mt-5">
+      <div class="row justify-content-center">
+
+        <div class="card mt-5 p-0 col-12 m-4 larguraCard larguraCard" >
+          <img src="imagens/liberdade-financeira.jpg" class="card-img-top cardImg" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Tenha controle Financeiro</h5>
+            <p class="card-text">Quer ter o controle das despesas? Confira no botão abaixo!</p>
+            <a target="_blank" href="https://blog.nubank.com.br/tag/controle-financeiro-pessoal/" class="btn btn-primary align-bottom">Ir para o site</a>
+          </div>
+        </div>
+
+        <div class="card mt-5 p-0 col-12 m-4 larguraCard" >
+          <img src="imagens/sobrou.jpg" class="card-img-top cardImg" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Sobrou Dinheiro?</h5>
+            <p class="card-text">Aprenda a investir e fazer seu dinheiro render mais.</p>
+            <a target="_blank" href="https://www.youtube.com/c/nuinvest" class="btn btn-primary align-bottom">Ir para o site</a>
+          </div>
+        </div>
+
+        <div class="card mt-5 p-0 col-12 m-4 larguraCard" >
+          <img src="imagens/vermelho.jpg" class="card-img-top cardImg3" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Tá no vermelho, e agora?</h5>
+            <p class="card-text">Veja algumas estratégias para sair do sufoco financeiro.</p>
+            <a target="_blank" href="https://blog.nubank.com.br/como-sair-do-vermelho-calculadora-de-metas-financeiras/" class="btn btn-primary align-bottom">Ir para o site</a>
+          </div>
+        </div>
+      
+      </div>
+    
+    </div>
+    
+    <div class="bg-dark p-5 footer mt-5">
+      
+        <div class="text-center"> 
+          
+          <a class="navbar-brand " href="#">
+          <img src="logo.png" width="50"  alt="Orçamento pessoal" ><span  style="font-weight: lighter; color:rgb(241, 241, 241)">Controle</span><span style="font-weight: bold; color:rgb(0, 224, 19)">Despesas</span>
+          </a>
+          <br>
+          <span style="color: lightgrey; font-size: 12px;">vers 1.0</span>
+      
+        </div>
+
+    </div>
+
+  </body>	
+
+</html>

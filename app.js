@@ -54,6 +54,7 @@ class Bd {
 				continue;
 			}
 
+			despesaObj.id = i;
 			listaDespesasObj.push(despesaObj);
 		}
 
@@ -77,9 +78,16 @@ class Bd {
 		
 		return despesasFiltradas;
 	}
+
+	remover(id){
+
+		localStorage.removeItem(id);
+	}
 }
 
 let bd = new Bd()
+
+
 
 
 function cadastrarDespesa() {
@@ -170,9 +178,25 @@ function carregaListaDespesas(despesas = [], filtro = false) {
 		coluna.insertCell(2).innerHTML = `${dado.descricao}`;
 		coluna.insertCell(3).innerHTML = `R$ ${dado.valor}`;
 
+		// criacao botão
+		let btn = document.createElement("button");
+		btn.id = `id_despesa_${dado.id}`
+		btn.className = 'btn btn-outline-danger btn-sm';
+		btn.innerHTML = '<p class="fas fa-trash"></p>';
+		btn.onclick = function(){
+
+			let id = this.id.replace('id_despesa_' , '');
+			console.log(id);
+
+			bd.remover(id);
+
+			window.location.reload();
+		};
+		
+		coluna.insertCell(4).append(btn);
 	})
 
-
+			
 }
 
 function pesquisarDespesa() {
@@ -189,4 +213,10 @@ function pesquisarDespesa() {
 	let despesas = bd.pesquisar(despesa);
 
 	carregaListaDespesas(despesas , true);
+}
+
+
+function totalDespesa(){
+
+	alert("total despesa")
 }

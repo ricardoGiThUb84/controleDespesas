@@ -1,0 +1,50 @@
+.img-carrousel{
+
+    object-fit: cover;
+    height: 400px;
+}
+
+.img-carrousel2{
+
+    object-fit: cover;
+    height: 400px;
+}
+
+.estilo-link{
+
+    background-color: blueviolet;
+    display: inline-block;
+    padding: 5px 10px;
+    color: white;
+}
+
+.cardImg{
+
+    object-fit: cover;
+    
+    height: 200px;
+}
+
+.cardImg3{
+
+    object-fit: cover;
+    
+    height: 200px;
+}
+
+.larguraCard{
+
+    max-width: 300px;
+}
+
+.footer img{
+
+    width: 25px;
+    
+}
+
+.footer span{
+
+    font-size: 15px;
+}
+
